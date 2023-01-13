@@ -17,3 +17,6 @@ Limitations:
 * It does not support LittleFS folder hierarchies.
 * WiFi credentials must be compiled in.
 * The code has only been tested in a Chrome desktop browser on Windows. While it should function correclty in Mozilla-style browsers across all desktop OS platforms, functionality on mobile and other desktop browsers is untested.
+
+To Do
+* Add VFS/FATFS support
