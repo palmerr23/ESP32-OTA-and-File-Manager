@@ -173,6 +173,7 @@ void handleMain() {
   bool foundMode = false;
   bool foundSaveBut = false;
   char filebuf[FILEBUFSIZ];
+  char filebuf[FILEBUFSIZ];
   File file;
 	String path = "", bText = "", bName = "", bMode ="";
   String output = "";
@@ -297,6 +298,7 @@ void handleMain() {
 			output +=  entry.name(); 
 			output +=  ">";
 		}
+    strcpy(fileName, entry.name());
     output += String(entry.name());
 		if(isDir) 
 		  output += "</a>";
@@ -305,13 +307,15 @@ void handleMain() {
 		output += ")&nbsp;&nbsp;";
     // edit
     output += "<a href=/main?mode=edit&nameSave="; 
-    output += path;
+    if(fileName[0] != '\\' && fileName[0] != '/') // avoid double \ or / in filename (on some OS)
+   	 output += path;
     output += String(entry.name());
     output += ">Edit</a>&nbsp;&nbsp;";
     // delete
-		output += "<a href=/delete?file="; 
-		output += path;
-		output += String(entry.name());
+    output += "<a href=/delete?file="; 
+    if(fileName[0] != '\\' && fileName[0] != '/') // avoid double \ or / in filename (on some OS)
+	output += path;
+    output += String(entry.name());
     output += ">Delete</a><BR>";
     entry.close();
   }	
