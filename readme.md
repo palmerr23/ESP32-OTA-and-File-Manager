@@ -20,3 +20,9 @@ Limitations:
 
 To Do
 * Add VFS/FATFS support
+
+Using this code:
+* Set your WiFi credentials in the myWiFi.h file
+* Compile and load the program, using Arduino,  onto your ESP32. 
+* Access the http://ESP32OTA.local URL from your host machine.
+* Perform file functions (format, load, edit, delete) and upload other programs (OTA) on the ESP32
