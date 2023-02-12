@@ -173,7 +173,7 @@ void handleMain() {
   bool foundMode = false;
   bool foundSaveBut = false;
   char filebuf[FILEBUFSIZ];
-  char filebuf[FILEBUFSIZ];
+  char fileName[128];
   File file;
 	String path = "", bText = "", bName = "", bMode ="";
   String output = "";
