@@ -18,6 +18,7 @@ Limitations:
 * WiFi credentials must be compiled in.
 * The code has only been tested in a Chrome desktop browser on Windows. While it should function correclty in Mozilla-style browsers across all desktop OS platforms, functionality on mobile and other desktop browsers is untested.
 * Assumes ESP32 v2.x (ESP32-IDF v4.x) for Arduino 1.8.x or Arduino 2.0.x 
+* It does not require additional libraries to be installed.
 * Tested on ESP32-DOWD (WROOM and WROVER) and ESP32-S3 (WROOM).
 
 To Do
@@ -31,5 +32,4 @@ Using this code:
 * Compile and load the program, using Arduino,  onto your ESP32. 
 * Access the http://ESP32OTA.local URL from your host machine.
 * Perform file functions (format, load, edit, delete) and upload other programs (OTA) on the ESP32
-
 
