@@ -1,8 +1,8 @@
-ESP32 OTA and File System Management
+## ESP32 OTA and File System Management
 
 The Arduino V2.0 IDE does not yet include the 'Sketch Data Upload' plugin.
 
-This program provides a web-based interface for
+# This program provides a web-based interface for
 * OTA
 * File system formatting
 * FS directory listing
@@ -12,7 +12,7 @@ This program provides a web-based interface for
 
 It may be accessed via from a web browser by its IP address or via http://ESP32OTA.local
 
-Limitations:
+# Limitations:
 * It must be compiled for either the SPIFFS or LittleFS file system. 
 * It does not support LittleFS folder hierarchies.
 * WiFi credentials must be compiled in.
@@ -21,15 +21,15 @@ Limitations:
 * It does not require additional libraries to be installed.
 * Tested on ESP32-DOWD (WROOM and WROVER) and ESP32-S3 (WROOM).
 
-To Do
+# To Do
 * Add VFS/FATFS support
 
-Using this code:
+# Using this code:
 * Set your WiFi credentials in the myWiFi.h file
 * Select a board partition scheme that allows SPIFFS (and OTA if you require it). Either the first option or fourth from the bottom are known to work. Third from the top and fifth from the bottom (large FS) should work on ESP32's with sufficient resources, but haven't been tested.
 
 ![Screenshot 2023-02-14 085739](https://user-images.githubusercontent.com/14856369/218584574-e9b7bc12-1cc5-4a47-a1dc-c944b132fa9f.png)
-* Compile and load the program, using Arduino,  onto your ESP32. 
+* Compile and load the program, using Arduino, onto your ESP32. 
 * Access the http://ESP32OTA.local URL from your host machine.
 * Perform file functions (format, load, edit, delete) and upload other programs (OTA) on the ESP32
 
