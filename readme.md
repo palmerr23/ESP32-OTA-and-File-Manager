@@ -30,5 +30,5 @@ It may be accessed via from a web browser by its IP address or via http://ESP32O
 * Access the http://ESP32OTA.local URL from your host machine.
 * Perform file functions (format, load, edit, delete) and upload other programs (OTA) on the ESP32
 
-## To Do
+## Not implemented
 * Add VFS/FATFS support
