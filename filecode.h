@@ -173,7 +173,7 @@ void handleMain() {
   bool foundMode = false;
   bool foundSaveBut = false;
   char filebuf[FILEBUFSIZ];
-  char fileName[128];
+  char fileName[64];
   File file;
 	String path = "", bText = "", bName = "", bMode ="";
   String output = "";
@@ -299,6 +299,7 @@ void handleMain() {
 			output +=  ">";
 		}
     strcpy(fileName, entry.name());
+    //Serial.printf("FN [%s]\n", fileName);
     output += String(entry.name());
 		if(isDir) 
 		  output += "</a>";
@@ -306,16 +307,17 @@ void handleMain() {
     output += String(entry.size());
 		output += ")&nbsp;&nbsp;";
     // edit
+    //Serial.printf("Edit path [%s] name[%s] ", path.c_str(),entry.name());
     output += "<a href=/main?mode=edit&nameSave="; 
     if(fileName[0] != '\\' && fileName[0] != '/') // avoid double \ or / in filename (on some OS)
-   	 output += path;
+      output += path;
     output += String(entry.name());
     output += ">Edit</a>&nbsp;&nbsp;";
     // delete
-    output += "<a href=/delete?file="; 
-    if(fileName[0] != '\\' && fileName[0] != '/') // avoid double \ or / in filename (on some OS)
-	output += path;
-    output += String(entry.name());
+		output += "<a href=/delete?file="; 
+    if(fileName[0] != '\\' && fileName[0] != '/')
+		  output += path;
+		output += String(entry.name());
     output += ">Delete</a><BR>";
     entry.close();
   }	
@@ -385,6 +387,27 @@ bool initFS(bool format = false, bool force = false)
 	}
 	//fsList();			
   return false; // shouldn't get here
+}
+
+// assumes no subdirectories
+void listDir()
+{
+    Serial.printf("Listing LittleFS root:\r\n");
+    File root = FILESYS.open("/");
+    if(!root){
+        Serial.println("- failed to open root directory");
+        return;
+    }
+    File file = root.openNextFile();
+		if(!file)
+        Serial.println("- LittleFS is empty"); 
+    while(file){        
+				Serial.print("  FILE: ");
+				Serial.print(file.name());
+				Serial.print("\tSIZE: ");
+				Serial.println(file.size());        
+        file = root.openNextFile();
+    }		
 }
 
 #endif

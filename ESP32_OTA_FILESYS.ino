@@ -10,13 +10,13 @@
  *  Adapted from the OTAWebUpdater example and
  *  https://github.com/roberttidey/BaseSupport
  *
- *  Richard Palmer 2023 
+ *  Richard Palmer 2023 & 202
  */
 
-#define LITTLE_FS 0
-#define SPIFFS_FS 1
-#define FILESYSTYPE SPIFFS_FS 
-//#define FILESYSTYPE LITTLE_FS 
+//#define LITTLE_FS 0
+//#define SPIFFS_FS 1
+//#define FILESYSTYPE SPIFFS_FS 
+#define FILESYSTYPE LITTLE_FS 
 
 const char* host = "ESP32OTA";
 
@@ -34,7 +34,7 @@ const char* host = "ESP32OTA";
 #include <WiFiServer.h>
 //#include <HTTPUpdateServer.h>
 
-//#define MYWIFI  // allow credentials to be stored in a file
+#define MYWIFI  // allow credentials to be stored in a file
 #ifdef MYWIFI
   #include "mywifi.h"
 #else
@@ -51,10 +51,12 @@ bool fsFound = false;
 void setup(void) 
 {
   Serial.begin(115200);
-  delay(3000);
-
+  while(!Serial && millis() < 5000)
+    delay(10);
+  Serial.println("ESP32 OTA and File Manager");
   fsFound = initFS(false, false); // is an FS already in place?
-
+  if(fsFound)
+    listDir();
   // Connect to WiFi network
   WiFi.begin(ssid, password);
   Serial.println("WiFi starting");
@@ -111,6 +113,7 @@ void setup(void)
   server.onNotFound([](){if(!handleFileRead(server.uri())) server.send(404, "text/plain", "404 FileNotFound");});
  
   server.begin();
+  Serial.println("Setup complete");
 }
 
 void loop(void) 
