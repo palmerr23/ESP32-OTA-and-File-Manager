@@ -16,6 +16,7 @@
 #define LITTLE_FS 0
 #define SPIFFS_FS 1
 #define FILESYSTYPE SPIFFS_FS 
+//#define FILESYSTYPE LITTLE_FS 
 
 const char* host = "ESP32OTA";
 
