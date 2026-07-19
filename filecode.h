@@ -284,7 +284,7 @@ void handleMain() {
   // file list and edit   
   output += "<tr style='background-color: #ffffde; border: 1px solid silver;'><td style='padding:5px; vertical-align:top;'>";
 	output += "<h3>Files in directory '" + path + "'</h3>";
-	if(FILESYSTYPE == 0)
+	if(fs_dirs) // sub-folders supported
 		output += "<a href=/main>Back to root</a><br>"; // LittleFS only
 	File entry;
   while(entry = dir.openNextFile())

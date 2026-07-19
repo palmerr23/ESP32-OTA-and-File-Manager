@@ -10,13 +10,18 @@
  *  Adapted from the OTAWebUpdater example and
  *  https://github.com/roberttidey/BaseSupport
  *
- *  Richard Palmer 2023 & 202
+ *  Richard Palmer 2023 & 2026
  */
 
-//#define LITTLE_FS 0
-//#define SPIFFS_FS 1
+
 //#define FILESYSTYPE SPIFFS_FS 
 #define FILESYSTYPE LITTLE_FS 
+
+#if (FILESYSTYPE == LITTLE_FS)
+  bool fs_dirs = true;
+#else
+  bool fs_dirs = false;
+#endif
 
 const char* host = "ESP32OTA";
 
